@@ -181,10 +181,10 @@ namespace UI
             try
             {
 
-               DialogResult resp = MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Confirmación", 
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resp = MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Confirmación",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if(resp == DialogResult.Yes)
+                if (resp == DialogResult.Yes)
                 {
                     _productoService.eliminar(productoSelected.id);
                     MessageBox.Show("Producto eliminado correctamente");
@@ -200,6 +200,11 @@ namespace UI
             }
 
 
+
+        }
+
+        private void gbxDatosProducto_Enter(object sender, EventArgs e)
+        {
 
         }
     }

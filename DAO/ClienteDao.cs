@@ -1,9 +1,6 @@
 ﻿using Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAO
 {
@@ -23,40 +20,25 @@ namespace DAO
 
         public void modificar(clsCliente cliente)
         {
-            //expresion lambda
-            //busco por id el cliente que quiero modificar en la lista 
-            clsCliente clienteModificar = listaCliente.Where(p => p.id
-                                                == cliente.id).SingleOrDefault();
-
-            //int 
-            // encuento el indice del cliente que quiero modificar, indice de la lista
+            clsCliente clienteModificar = listaCliente.SingleOrDefault(p => p.id == cliente.id);
             int indice = listaCliente.IndexOf(clienteModificar);
-            //le caigo encima al indice del cliente que quiero modificar
             listaCliente[indice] = cliente;
-
-
         }
 
         public void eliminar(int id)
         {
-            clsCliente clienteEliminar = listaCliente.Where(p => p.id
-                                                == id).SingleOrDefault();
+            clsCliente clienteEliminar = listaCliente.SingleOrDefault(p => p.id == id);
             listaCliente.Remove(clienteEliminar);
-
         }
+
         public clsCliente consultarPorID(int id)
         {
-            return listaCliente.Where(p => p.id
-                                                 == id).SingleOrDefault();
+            return listaCliente.SingleOrDefault(p => p.id == id);
         }
 
         public List<clsCliente> consultarTodos()
         {
             return listaCliente;
         }
-
-
-
-
     }
 }

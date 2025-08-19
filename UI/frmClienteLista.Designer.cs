@@ -35,7 +35,12 @@
             lstvListaCliente = new ListView();
             colId = new ColumnHeader();
             colNombre = new ColumnHeader();
-            colPrecio = new ColumnHeader();
+            colApellido1 = new ColumnHeader();
+            colApellido2 = new ColumnHeader();
+            colGenero = new ColumnHeader();
+            colFecha = new ColumnHeader();
+            colCorreo = new ColumnHeader();
+            colEstado = new ColumnHeader();
             lblTitulo = new Label();
             gbxListaCliente.SuspendLayout();
             SuspendLayout();
@@ -51,6 +56,7 @@
             btnNuevoCliente.TabIndex = 4;
             btnNuevoCliente.Text = " Nuevo";
             btnNuevoCliente.UseVisualStyleBackColor = true;
+            btnNuevoCliente.TextChanged += btnNuevoCliente_TextChanged;
             btnNuevoCliente.Click += btnNuevoCliente_Click;
             // 
             // gbxListaCliente
@@ -66,6 +72,7 @@
             gbxListaCliente.TabIndex = 5;
             gbxListaCliente.TabStop = false;
             gbxListaCliente.Text = "Lista Clientes";
+            gbxListaCliente.Enter += gbxListaCliente_Enter;
             // 
             // label1
             // 
@@ -87,7 +94,7 @@
             // 
             // lstvListaCliente
             // 
-            lstvListaCliente.Columns.AddRange(new ColumnHeader[] { colId, colNombre, colPrecio });
+            lstvListaCliente.Columns.AddRange(new ColumnHeader[] { colId, colNombre, colApellido1, colApellido2, colGenero, colFecha, colCorreo, colEstado });
             lstvListaCliente.FullRowSelect = true;
             lstvListaCliente.GridLines = true;
             lstvListaCliente.Location = new Point(26, 147);
@@ -98,6 +105,8 @@
             lstvListaCliente.TabIndex = 0;
             lstvListaCliente.UseCompatibleStateImageBehavior = false;
             lstvListaCliente.View = View.Details;
+            lstvListaCliente.SelectedIndexChanged += lstvListaCliente_SelectedIndexChanged;
+            lstvListaCliente.MouseDoubleClick += lstvListaCliente_MouseDoubleClick_1;
             // 
             // colId
             // 
@@ -109,10 +118,30 @@
             colNombre.Text = "Nombre";
             colNombre.Width = 300;
             // 
-            // colPrecio
+            // colApellido1
             // 
-            colPrecio.Text = "Precio";
-            colPrecio.Width = 150;
+            colApellido1.Text = "Apellido 1";
+            colApellido1.Width = 150;
+            // 
+            // colApellido2
+            // 
+            colApellido2.Text = "Apellido 2";
+            // 
+            // colGenero
+            // 
+            colGenero.Text = "Genero";
+            // 
+            // colFecha
+            // 
+            colFecha.Text = "Fecha";
+            // 
+            // colCorreo
+            // 
+            colCorreo.Text = "Correo";
+            // 
+            // colEstado
+            // 
+            colEstado.Text = "Estado";
             // 
             // lblTitulo
             // 
@@ -124,6 +153,7 @@
             lblTitulo.Size = new Size(415, 45);
             lblTitulo.TabIndex = 3;
             lblTitulo.Text = "Administración de clientes";
+            lblTitulo.TextChanged += lblTitulo_TextChanged;
             // 
             // frmClienteLista
             // 
@@ -151,7 +181,12 @@
         private ListView lstvListaCliente;
         private ColumnHeader colId;
         private ColumnHeader colNombre;
-        private ColumnHeader colPrecio;
+        private ColumnHeader colApellido1;
         private Label lblTitulo;
+        private ColumnHeader colApellido2;
+        private ColumnHeader colGenero;
+        private ColumnHeader colFecha;
+        private ColumnHeader colCorreo;
+        private ColumnHeader colEstado;
     }
 }

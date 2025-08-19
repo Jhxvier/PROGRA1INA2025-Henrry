@@ -32,6 +32,8 @@
             btnGuardarCliente = new Button();
             lblTitulo = new Label();
             gbxDatosProducto = new GroupBox();
+            chkActivo = new CheckBox();
+            lblEstado = new Label();
             txtCorreoCliente = new TextBox();
             label3 = new Label();
             dateCliente = new DateTimePicker();
@@ -46,8 +48,7 @@
             lblNombre = new Label();
             txtIdCliente = new TextBox();
             lblId = new Label();
-            lblEstado = new Label();
-            chkActivo = new CheckBox();
+            btnEliminar = new Button();
             gbxDatosProducto.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             btnCancelarCliente.TabIndex = 7;
             btnCancelarCliente.Text = "Cancelar";
             btnCancelarCliente.UseVisualStyleBackColor = true;
+            btnCancelarCliente.Click += btnCancelarCliente_Click;
             // 
             // btnGuardarCliente
             // 
@@ -82,6 +84,9 @@
             lblTitulo.Size = new Size(212, 45);
             lblTitulo.TabIndex = 5;
             lblTitulo.Text = "Crear Cliente";
+            lblTitulo.TextChanged += lblTitulo_TextChanged;
+            lblTitulo.Click += lblTitulo_Click;
+            lblTitulo.DoubleClick += lblTitulo_DoubleClick;
             // 
             // gbxDatosProducto
             // 
@@ -110,6 +115,28 @@
             gbxDatosProducto.TabStop = false;
             gbxDatosProducto.Text = "Datos de Cliente";
             gbxDatosProducto.Enter += gbxDatosProducto_Enter;
+            // 
+            // chkActivo
+            // 
+            chkActivo.AutoSize = true;
+            chkActivo.Location = new Point(379, 233);
+            chkActivo.Name = "chkActivo";
+            chkActivo.Size = new Size(88, 29);
+            chkActivo.TabIndex = 15;
+            chkActivo.Text = "Activo";
+            chkActivo.UseVisualStyleBackColor = true;
+            chkActivo.CheckedChanged += chkActivo_CheckedChanged;
+            chkActivo.TextChanged += chkActivo_TextChanged;
+            // 
+            // lblEstado
+            // 
+            lblEstado.AutoSize = true;
+            lblEstado.Location = new Point(300, 233);
+            lblEstado.Margin = new Padding(4, 0, 4, 0);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(66, 25);
+            lblEstado.TabIndex = 14;
+            lblEstado.Text = "Estado";
             // 
             // txtCorreoCliente
             // 
@@ -243,31 +270,23 @@
             lblId.TabIndex = 0;
             lblId.Text = "ID:";
             // 
-            // lblEstado
+            // btnEliminar
             // 
-            lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(300, 233);
-            lblEstado.Margin = new Padding(4, 0, 4, 0);
-            lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(66, 25);
-            lblEstado.TabIndex = 14;
-            lblEstado.Text = "Estado";
-            // 
-            // chkActivo
-            // 
-            chkActivo.AutoSize = true;
-            chkActivo.Location = new Point(379, 233);
-            chkActivo.Name = "chkActivo";
-            chkActivo.Size = new Size(88, 29);
-            chkActivo.TabIndex = 15;
-            chkActivo.Text = "Activo";
-            chkActivo.UseVisualStyleBackColor = true;
+            btnEliminar.Location = new Point(165, 392);
+            btnEliminar.Margin = new Padding(4, 5, 4, 5);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(161, 60);
+            btnEliminar.TabIndex = 8;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // frmCliente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 468);
+            Controls.Add(btnEliminar);
             Controls.Add(btnCancelarCliente);
             Controls.Add(btnGuardarCliente);
             Controls.Add(lblTitulo);
@@ -303,5 +322,6 @@
         private Label lblId;
         private CheckBox chkActivo;
         private Label lblEstado;
+        private Button btnEliminar;
     }
 }

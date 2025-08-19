@@ -44,9 +44,10 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(159, 9);
+            lblTitulo.Location = new Point(227, 15);
+            lblTitulo.Margin = new Padding(4, 0, 4, 0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(271, 30);
+            lblTitulo.Size = new Size(412, 45);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Mantenimiento Productos";
             // 
@@ -54,9 +55,10 @@
             // 
             btnNuevo.FlatAppearance.BorderColor = Color.Red;
             btnNuevo.FlatAppearance.BorderSize = 3;
-            btnNuevo.Location = new Point(485, 21);
+            btnNuevo.Location = new Point(693, 35);
+            btnNuevo.Margin = new Padding(4, 5, 4, 5);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(120, 40);
+            btnNuevo.Size = new Size(171, 67);
             btnNuevo.TabIndex = 1;
             btnNuevo.Text = " Nuevo";
             btnNuevo.UseVisualStyleBackColor = true;
@@ -67,9 +69,11 @@
             gbxLista.Controls.Add(label1);
             gbxLista.Controls.Add(txtBusqueda);
             gbxLista.Controls.Add(lstvLista);
-            gbxLista.Location = new Point(12, 67);
+            gbxLista.Location = new Point(17, 112);
+            gbxLista.Margin = new Padding(4, 5, 4, 5);
             gbxLista.Name = "gbxLista";
-            gbxLista.Size = new Size(593, 387);
+            gbxLista.Padding = new Padding(4, 5, 4, 5);
+            gbxLista.Size = new Size(847, 645);
             gbxLista.TabIndex = 2;
             gbxLista.TabStop = false;
             gbxLista.Text = "Lista Productos";
@@ -77,17 +81,19 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 27);
+            label1.Location = new Point(27, 45);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(62, 15);
+            label1.Size = new Size(94, 25);
             label1.TabIndex = 4;
             label1.Text = "Busqueda:";
             // 
             // txtBusqueda
             // 
-            txtBusqueda.Location = new Point(18, 50);
+            txtBusqueda.Location = new Point(26, 83);
+            txtBusqueda.Margin = new Padding(4, 5, 4, 5);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(554, 23);
+            txtBusqueda.Size = new Size(790, 31);
             txtBusqueda.TabIndex = 3;
             // 
             // lstvLista
@@ -95,10 +101,12 @@
             lstvLista.Columns.AddRange(new ColumnHeader[] { colId, colNombre, colPrecio });
             lstvLista.FullRowSelect = true;
             lstvLista.GridLines = true;
-            lstvLista.Location = new Point(18, 88);
+            lstvLista.HoverSelection = true;
+            lstvLista.Location = new Point(26, 147);
+            lstvLista.Margin = new Padding(4, 5, 4, 5);
             lstvLista.MultiSelect = false;
             lstvLista.Name = "lstvLista";
-            lstvLista.Size = new Size(557, 293);
+            lstvLista.Size = new Size(794, 486);
             lstvLista.TabIndex = 0;
             lstvLista.UseCompatibleStateImageBehavior = false;
             lstvLista.View = View.Details;
@@ -122,12 +130,13 @@
             // 
             // frmProductoLista
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(629, 465);
+            ClientSize = new Size(899, 775);
             Controls.Add(btnNuevo);
             Controls.Add(gbxLista);
             Controls.Add(lblTitulo);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "frmProductoLista";
             Text = "Mantenimiento: Productos";
             Load += frmProductoLista_Load;
