@@ -1,5 +1,6 @@
 ﻿using Common.Utils;
 using Entities;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,23 +16,72 @@ namespace UI
 {
     public partial class frmProducto : Form
     {
-        public frmProducto()
+
+        public clsProducto productoSelected { get; set; }
+
+
+
+        private readonly ProductoService _productoService;
+        public frmProducto(ProductoService _proServ)
         {
             InitializeComponent();
+
+            _productoService = _proServ;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+
+
             try
             {
                 //validar datos de entrada
                 if (validarDatos())
                 {
 
-                    clsProducto producto = new clsProducto();
+                    //creo la instancia del producto nuevo
+                    clsProducto producto = productoSelected == null ? new clsProducto() : productoSelected;
+
+                    /* if (productoSelected == null)
+                     {
+                         producto = new clsProducto();
+                     }
+                     else
+                     {
+                         producto = productoSelected;
+                     }*/
+                    //seteo los valores del producto
+                    producto.id = Convert.ToInt32(txtId.Text);
+                    // producto.id = int.Parse(txtId.Text);
+                    producto.setNombre(txtNombre.Text);
                     producto.precio = Convert.ToInt32(txtPrecio.Text);
+                    producto.cantidad = (int)txtCantidad.Value;
+
+                    //llamo a mi capa de servicios para guardar/ crear el producto
+                    if (productoSelected == null)
+                    {
+                        _productoService.crear(producto);
+                        //muestro mensaje de exito
+                        MessageBox.Show("Producto creado correctamente");
+                    }
+                    else
+                    {
+                        _productoService.modificar(producto);
+                        //muestro mensaje de exito
+                        MessageBox.Show("Producto modificado correctamente");
+                    }
+
+
+                    //limpio los campos
+                    limpiarForm(); //ya no tiene duncionalidad xq se cierra el form
+                    this.Close();
 
                 }
+
+
+
+
+
 
 
             }
@@ -40,6 +90,14 @@ namespace UI
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void limpiarForm()
+        {
+            txtId.ResetText();
+            txtNombre.ResetText();
+            txtPrecio.ResetText();
+            txtCantidad.Value = 0;
         }
 
         private bool validarDatos()
@@ -52,9 +110,9 @@ namespace UI
                 return false;
             }
 
-            if (txtNombre.Text.Length == 0 || txtNombre.Text.Length < 5)
+            if (txtNombre.Text.Length == 0)
             {
-                MessageBox.Show("El nombre es obligatorio y debe tener mas de 5 caracteres");
+                MessageBox.Show("El nombre es obligatorio");
                 txtNombre.Focus();
                 return false;
 
@@ -77,18 +135,71 @@ namespace UI
             return true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmProducto_Load(object sender, EventArgs e)
         {
+
+            if (productoSelected != null) //accion de modificar
+            {
+                this.lblTitulo.Text = "Modificar Producto";
+                this.Text = "Modificar Producto";
+                this.txtId.Enabled = false; //no se puede modificar el id
+                btnGuardar.Text = "Modificar";
+                btnEliminar.Visible = true; //muestro el boton de eliminar
+                cargarForm();
+
+            }
+            else //producto es null, accion es crear
+            {
+                this.lblTitulo.Text = "Crear Producto";
+                this.Text = "Crear Producto";
+                this.txtId.Enabled = true; //se puede ingresar el id
+                btnGuardar.Text = "Guardar";
+                btnEliminar.Visible = false; //oculto el boton de eliminar
+                limpiarForm();
+            }
+
+
+
+        }
+        //carga el form con lo datos pasados por la propiedad
+        private void cargarForm()
+        {
+            txtId.Text = productoSelected.id.ToString();
+            txtNombre.Text = productoSelected.getNombre();
+            txtPrecio.Text = productoSelected.precio.ToString();
+            txtCantidad.Value = productoSelected.cantidad;
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+               DialogResult resp = MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Confirmación", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(resp == DialogResult.Yes)
+                {
+                    _productoService.eliminar(productoSelected.id);
+                    MessageBox.Show("Producto eliminado correctamente");
+                    this.Close(); //cierro el formulario
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error al eliminar el producto.");
+            }
+
+
 
         }
     }

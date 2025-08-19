@@ -40,6 +40,7 @@
             lblTitulo = new Label();
             btnGuardar = new Button();
             btnCancelar = new Button();
+            btnEliminar = new Button();
             gbxDatosProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtCantidad).BeginInit();
             SuspendLayout();
@@ -54,84 +55,75 @@
             gbxDatosProducto.Controls.Add(lblNombre);
             gbxDatosProducto.Controls.Add(txtId);
             gbxDatosProducto.Controls.Add(lblId);
-            gbxDatosProducto.Location = new Point(17, 77);
-            gbxDatosProducto.Margin = new Padding(4, 5, 4, 5);
+            gbxDatosProducto.Location = new Point(12, 46);
             gbxDatosProducto.Name = "gbxDatosProducto";
-            gbxDatosProducto.Padding = new Padding(4, 5, 4, 5);
-            gbxDatosProducto.Size = new Size(564, 328);
+            gbxDatosProducto.Size = new Size(395, 197);
             gbxDatosProducto.TabIndex = 0;
             gbxDatosProducto.TabStop = false;
             gbxDatosProducto.Text = "Datos de producto";
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(111, 207);
-            txtCantidad.Margin = new Padding(4, 5, 4, 5);
+            txtCantidad.Location = new Point(78, 124);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(121, 31);
-            txtCantidad.TabIndex = 7;
+            txtCantidad.Size = new Size(85, 23);
+            txtCantidad.TabIndex = 4;
             // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(20, 210);
-            lblCantidad.Margin = new Padding(4, 0, 4, 0);
+            lblCantidad.Location = new Point(14, 126);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(87, 25);
+            lblCantidad.Size = new Size(58, 15);
             lblCantidad.TabIndex = 6;
             lblCantidad.Text = "Cantidad:";
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(111, 157);
-            txtPrecio.Margin = new Padding(4, 5, 4, 5);
+            txtPrecio.Location = new Point(78, 94);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(177, 31);
-            txtPrecio.TabIndex = 5;
+            txtPrecio.Size = new Size(125, 23);
+            txtPrecio.TabIndex = 3;
             // 
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(41, 162);
-            lblPrecio.Margin = new Padding(4, 0, 4, 0);
+            lblPrecio.Location = new Point(29, 97);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(64, 25);
+            lblPrecio.Size = new Size(43, 15);
             lblPrecio.TabIndex = 4;
             lblPrecio.Text = "Precio:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(111, 108);
-            txtNombre.Margin = new Padding(4, 5, 4, 5);
+            txtNombre.Location = new Point(78, 65);
+            txtNombre.MaxLength = 50;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(428, 31);
-            txtNombre.TabIndex = 3;
+            txtNombre.Size = new Size(301, 23);
+            txtNombre.TabIndex = 2;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(26, 113);
-            lblNombre.Margin = new Padding(4, 0, 4, 0);
+            lblNombre.Location = new Point(18, 68);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(82, 25);
+            lblNombre.Size = new Size(54, 15);
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Nombre:";
             // 
             // txtId
             // 
-            txtId.Location = new Point(111, 60);
-            txtId.Margin = new Padding(4, 5, 4, 5);
+            txtId.Location = new Point(78, 36);
             txtId.Name = "txtId";
-            txtId.Size = new Size(177, 31);
+            txtId.Size = new Size(125, 23);
             txtId.TabIndex = 1;
             // 
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(73, 65);
-            lblId.Margin = new Padding(4, 0, 4, 0);
+            lblId.Location = new Point(51, 39);
             lblId.Name = "lblId";
-            lblId.Size = new Size(34, 25);
+            lblId.Size = new Size(21, 15);
             lblId.TabIndex = 0;
             lblId.Text = "ID:";
             // 
@@ -139,44 +131,52 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(194, 22);
-            lblTitulo.Margin = new Padding(4, 0, 4, 0);
+            lblTitulo.Location = new Point(136, 13);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(248, 45);
+            lblTitulo.Size = new Size(161, 30);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Crear Producto";
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(420, 415);
-            btnGuardar.Margin = new Padding(4, 5, 4, 5);
+            btnGuardar.Location = new Point(175, 249);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(161, 60);
-            btnGuardar.TabIndex = 2;
+            btnGuardar.Size = new Size(113, 36);
+            btnGuardar.TabIndex = 5;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(246, 415);
-            btnCancelar.Margin = new Padding(4, 5, 4, 5);
+            btnCancelar.Location = new Point(294, 249);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(161, 60);
-            btnCancelar.TabIndex = 3;
+            btnCancelar.Size = new Size(113, 36);
+            btnCancelar.TabIndex = 6;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(56, 249);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(113, 36);
+            btnEliminar.TabIndex = 7;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // frmProducto
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 488);
+            ClientSize = new Size(421, 293);
+            Controls.Add(btnEliminar);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(lblTitulo);
             Controls.Add(gbxDatosProducto);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "frmProducto";
             Text = "Matentenimiento: Crear Producto";
             Load += frmProducto_Load;
@@ -193,6 +193,7 @@
         private Label lblTitulo;
         private Button btnGuardar;
         private Button btnCancelar;
+        private Label lblCantidad;
         private TextBox txtPrecio;
         private Label lblPrecio;
         private TextBox txtNombre;
@@ -200,9 +201,6 @@
         private TextBox txtId;
         private Label lblId;
         private NumericUpDown txtCantidad;
-        private Label lblCantidad;
-        private TextBox textBox1;
-        private Label label3;
-        private DateTimePicker dateCliente;
+        private Button btnEliminar;
     }
 }

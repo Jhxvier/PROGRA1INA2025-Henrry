@@ -7,9 +7,12 @@ namespace Services
     public class ProductoService
     {
         //capa de servicio viaja o accede a capa de datos    
-        ProductoDao _prodDao= new ProductoDao();
+        private readonly ProductoDao _prodDao= new ProductoDao();
 
-        public ProductoService() { }
+        public ProductoService() {
+
+      
+        }
 
         public void crear(clsProducto producto)
         {
@@ -44,10 +47,10 @@ namespace Services
                 throw new Exception("El precio debe ser mayor a 0");
             }            
             // regla de negocio valida que el nombre    
-            if (_prodDao.consultarPorNombre(producto.getNombre()) != null)
-            {
-                throw new Exception("Ya existe un producto con ese nombre");
-            }
+            //if (_prodDao.consultarPorNombre(producto.getNombre()) != null)
+            //{
+            //    throw new Exception("Ya existe un producto con ese nombre");
+            //}
 
             _prodDao.modificar(producto);
 
