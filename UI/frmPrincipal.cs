@@ -62,9 +62,9 @@ namespace UI
             for (int j = 0; j < 10; j++)
             {
                 //clsProducto prodX = new clsProducto();
-            
-                prodX.setNombre("");             
-      
+
+                prodX.nombre = "";
+
 
             }
 

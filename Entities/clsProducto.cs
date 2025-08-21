@@ -1,46 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entities
 {
+    [Table("tbProductos")]
     public class clsProducto
     {
         //atributos
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
-        //atributos
-        private string nombre;
-        //private decimal precio;
-        //private int cantidad;
 
-        //propiedades
+        [Required]
+        [StringLength(50, ErrorMessage = "El nombre no puede tener mas de 50 caracteres")]
+        public string nombre { get; set; }
 
-        public void setNombre(string nombre)
-        {
-            ////validacion y comprobacion del dato, transformacion de datos
-            //if (nombre.Length <= 5)
-            //{
-            //    throw new Exception("El nombre debe tener mas de 5 caracteres");
-
-            //}
-            this.nombre = nombre.ToUpper();
-        }
-
-        public string getNombre()
-        {
-            return this.nombre;
-        }
-
+        [Required]
+        [Range(0, 1000000, ErrorMessage = "El precio debe estar entre 0 y 1000000")]
         public int precio { get; set; }
+
+        [Required]
+        [Range(0, 1000, ErrorMessage = "La cantidad debe estar entre 0 y 1000")]
+        [Column("cantidad", TypeName = "int")]
         public int cantidad { get; set; }
 
 
         //constructor
         //sobrecarga de constructores
-        public clsProducto(int id,string nombre, int precio, int cantidad)
+        public clsProducto(int id, string nombre, int precio, int cantidad)
         {
             this.id = id;
             this.nombre = nombre;
@@ -50,13 +42,14 @@ namespace Entities
 
         public clsProducto()
         {
-           
+
         }
 
-       
+
 
         //metodos
-        public decimal calcularPrecioTotal() {
+        public decimal calcularPrecioTotal()
+        {
             return this.precio * this.cantidad;
         }
 

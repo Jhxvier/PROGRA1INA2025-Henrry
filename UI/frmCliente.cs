@@ -7,18 +7,20 @@ namespace UI
 {
     public partial class frmCliente : Form
     {
-        private readonly ClienteService _clienteService;
-        public clsCliente clienteSelected { get; set; }
+        private readonly ClienteService _clienteService; // Servicio de cliente
+        public clsCliente clienteSelected { get; set; }  // Cliente seleccionado (para modificar)
 
-        public frmCliente(ClienteService clienteService)
+        // Constructor
+        public frmCliente()
         {
             InitializeComponent();
-            _clienteService = clienteService;
+            _clienteService = new ClienteService(); // Inicialización directa
         }
 
+        // Evento Load del formulario
         private void frmCliente_Load(object sender, EventArgs e)
         {
-            if (clienteSelected != null)
+            if (clienteSelected != null) // modificar
             {
                 txtIdCliente.Text = clienteSelected.id.ToString();
                 txtNombreCliente.Text = clienteSelected.nombre;
@@ -31,6 +33,7 @@ namespace UI
             }
         }
 
+        // Validación de datos obligatorios
         private bool validarDatos()
         {
             if (string.IsNullOrWhiteSpace(txtIdCliente.Text)) return false;
@@ -40,6 +43,7 @@ namespace UI
             return true;
         }
 
+        // Evento Guardar/Modificar
         private void btnGuardarCliente_Click(object sender, EventArgs e)
         {
             try
@@ -58,9 +62,9 @@ namespace UI
                         estado = chkActivo.Checked
                     };
 
-                    if (clienteSelected == null)
-                        _clienteService.guardar(cliente);
-                    else
+                    if (clienteSelected == null) // Crear
+                        _clienteService.crear(cliente);
+                    else // Modificar
                         _clienteService.modificar(cliente);
 
                     MessageBox.Show("Cliente guardado correctamente");
@@ -77,6 +81,7 @@ namespace UI
             }
         }
 
+        // Evento Eliminar
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (clienteSelected != null)
@@ -98,11 +103,13 @@ namespace UI
             }
         }
 
+        // Evento Cancelar
         private void btnCancelarCliente_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Eventos de cambio de texto vacíos para diseño
         private void txtNombreCliente_TextChanged(object sender, EventArgs e) { }
         private void txtIdCliente_TextChanged(object sender, EventArgs e) { }
         private void txtGenero_TextChanged(object sender, EventArgs e) { }
@@ -116,8 +123,5 @@ namespace UI
         private void dateCliente_ValueChanged(object sender, EventArgs e) { }
         private void chkActivo_TextChanged(object sender, EventArgs e) { }
         private void chkActivo_CheckedChanged(object sender, EventArgs e) { }
-
-
-
     }
 }

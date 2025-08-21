@@ -22,11 +22,11 @@ namespace UI
 
 
         private readonly ProductoService _productoService;
-        public frmProducto(ProductoService _proServ)
+        public frmProducto()
         {
             InitializeComponent();
 
-            _productoService = _proServ;
+            _productoService = new ProductoService();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace UI
                 if (validarDatos())
                 {
 
-                    //creo la instancia del producto nuevo
+                    //creo la instancia del producto nuevo, 
                     clsProducto producto = productoSelected == null ? new clsProducto() : productoSelected;
 
                     /* if (productoSelected == null)
@@ -53,7 +53,7 @@ namespace UI
                     //seteo los valores del producto
                     producto.id = Convert.ToInt32(txtId.Text);
                     // producto.id = int.Parse(txtId.Text);
-                    producto.setNombre(txtNombre.Text);
+                    producto.nombre = txtNombre.Text;
                     producto.precio = Convert.ToInt32(txtPrecio.Text);
                     producto.cantidad = (int)txtCantidad.Value;
 
@@ -165,7 +165,7 @@ namespace UI
         private void cargarForm()
         {
             txtId.Text = productoSelected.id.ToString();
-            txtNombre.Text = productoSelected.getNombre();
+            txtNombre.Text = productoSelected.nombre;
             txtPrecio.Text = productoSelected.precio.ToString();
             txtCantidad.Value = productoSelected.cantidad;
 
@@ -200,11 +200,6 @@ namespace UI
             }
 
 
-
-        }
-
-        private void gbxDatosProducto_Enter(object sender, EventArgs e)
-        {
 
         }
     }

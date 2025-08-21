@@ -9,20 +9,23 @@ namespace UI
 {
     public partial class frmClienteLista : Form
     {
-        private readonly ClienteService _clienteService;
-        List<clsCliente> lista;
+        private readonly ClienteService _clienteService; // Servicio de Cliente
+        List<clsCliente> lista; // Lista de clientes
 
-        public frmClienteLista(ClienteService clienteService)
+        // Constructor
+        public frmClienteLista()
         {
             InitializeComponent();
-            _clienteService = clienteService;
+            _clienteService = new ClienteService(); // Inicialización directa
         }
 
+        // Evento Load del formulario
         private void frmClienteLista_Load(object sender, EventArgs e)
         {
             cargarListaClientes();
         }
 
+        // Cargar lista de clientes
         private void cargarListaClientes()
         {
             lista = _clienteService.consultarTodos();
@@ -42,46 +45,38 @@ namespace UI
             }
         }
 
+        // Evento Crear cliente
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-            frmCliente frm = new frmCliente(_clienteService);
+            frmCliente frm = new frmCliente();
             frm.ShowDialog();
             cargarListaClientes();
         }
 
+        // Evento doble click sobre ListView para modificar cliente
         private void lstvListaCliente_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
-            // Verificar que haya un elemento seleccionado
             if (lstvListaCliente.SelectedItems.Count > 0)
             {
-                // Tomamos el id del cliente desde la primera subitem (colId)
                 int id = int.Parse(lstvListaCliente.SelectedItems[0].SubItems[0].Text);
-
-                // Buscamos el cliente en la lista cargada
                 clsCliente cliente = lista.Where(c => c.id == id).SingleOrDefault();
 
                 if (cliente != null)
                 {
-                    // Abrimos el formulario de cliente pasando el servicio
-                    frmCliente frm = new frmCliente(_clienteService)
+                    frmCliente frm = new frmCliente
                     {
-                        clienteSelected = cliente // Pasamos el cliente seleccionado
+                        clienteSelected = cliente
                     };
-
                     frm.ShowDialog();
-
-                    // Después de cerrar, recargamos la lista
                     cargarListaClientes();
                 }
             }
         }
 
-
+        // Eventos vacíos para diseño
         private void lblTitulo_TextChanged(object sender, EventArgs e) { }
         private void lstvListaCliente_SelectedIndexChanged(object sender, EventArgs e) { }
         private void gbxListaCliente_Enter(object sender, EventArgs e) { }
         private void btnNuevoCliente_TextChanged(object sender, EventArgs e) { }
-
-
     }
 }

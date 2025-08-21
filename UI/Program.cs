@@ -1,31 +1,33 @@
+using DAO;
 using Services;
-using System;
-using System.Windows.Forms;
 
 namespace UI
 {
     internal static class Program
     {
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
         [STAThread]
         static void Main()
         {
-            ProductoService _productoServ = new ProductoService();
-            ClienteService clienteService = new ClienteService();
 
+
+
+
+
+            //ProductoService _productoServ = new ProductoService();
+
+
+
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            Application.Run(new frmClienteLista());
 
-            // Ejecutar el formulario principal de clientes
-            Application.Run(new frmClienteLista(clienteService));
+            //solo ejemplo
+            //Application.Run(new frmLogin());
 
-            // Alternativa para ejecutar el formulario de productos:
-            // Application.Run(new frmProductoLista(_productoServ));
-
-            // Para un sistema con login:
-            // var loginForm = new frmLogin();
-            // if (loginForm.ShowDialog() == DialogResult.OK)
-            // {
-            //     Application.Run(new frmClienteLista(clienteService));
-            // }
         }
     }
 }

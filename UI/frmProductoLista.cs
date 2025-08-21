@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,41 +18,43 @@ namespace UI
         List<clsProducto> lista;
 
         private readonly ProductoService _productoService;
-        public frmProductoLista(ProductoService _proServ)
+        public frmProductoLista()
         {
             InitializeComponent();
-            _productoService = _proServ;
+            _productoService = new ProductoService();
         }
 
         private void frmProductoLista_Load(object sender, EventArgs e)
         {
-            cargarLista();
+            this.lista = _productoService.consultarTodos();
+            cargarLista(lista);
 
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            frmProducto frmProducto = new frmProducto(_productoService);
+            frmProducto frmProducto = new frmProducto();
             frmProducto.ShowDialog();
 
 
             //actualiar la lista
-            cargarLista();
+            this.lista = _productoService.consultarTodos();
+            cargarLista(lista);
 
 
         }
 
-        private void cargarLista()
+        private void cargarLista(List<clsProducto> lista)
         {
 
-            this.lista = _productoService.consultarTodos();
+
 
             lstvLista.Items.Clear();
 
             foreach (clsProducto producto in lista)
             {
                 ListViewItem item = new ListViewItem(producto.id.ToString());
-                item.SubItems.Add(producto.getNombre());
+                item.SubItems.Add(producto.nombre);
                 item.SubItems.Add(producto.precio.ToString());
                 lstvLista.Items.Add(item);
             }
@@ -68,28 +71,29 @@ namespace UI
             try
             {
                 //validar si hay un elemento seleccionado
-                if(lstvLista.SelectedItems.Count > 0)
+                if (lstvLista.SelectedItems.Count > 0)
                 {
                     //extraigo el id del producto seleccionado de la listview
                     int id = int.Parse(lstvLista.SelectedItems[0].SubItems[0].Text);
 
                     //consulto el producto por id a la lista    
 
-                    clsProducto producto= lista.Where(p => p.id == id).SingleOrDefault();
+                    clsProducto producto = lista.Where(p => p.id == id).SingleOrDefault();
 
-                    if(producto != null)
+                    if (producto != null)
                     {
                         //creo una instancia del formulario de producto
-                        frmProducto frmProducto = new frmProducto(_productoService);
+                        frmProducto frmProducto = new frmProducto();
                         //le asigno a la propiedad el producto seleccionado
                         frmProducto.productoSelected = producto;
                         //abro el formulario
                         frmProducto.ShowDialog();
 
                         //actualiar la lista
-                        cargarLista();
-                    }   
-              
+                        this.lista = _productoService.consultarTodos();
+                        cargarLista(lista);
+                    }
+
 
                 }
 
@@ -99,6 +103,20 @@ namespace UI
 
                 MessageBox.Show("Error al seleccionar el producto de la lista");
             }
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            //FILTRAR POR NOMBRE Y POR EL ID
+            var listaFiltrada = this.lista.Where(p => p.id.ToString().ToUpper()
+            .Contains(txtBusqueda.Text.ToUpper()) ||
+            p.nombre.ToUpper().Contains(txtBusqueda.Text.ToUpper())).ToList();
+
+            cargarLista(listaFiltrada);
+
+
+
+
         }
     }
 }
